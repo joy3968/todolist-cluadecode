@@ -141,7 +141,7 @@ function App() {
   return (
     <div className="app">
       <header className="header">
-        <h1>📝 Todo List</h1>
+        <h1>✨ DailyFlow</h1>
       </header>
 
       <div className="input-section">
