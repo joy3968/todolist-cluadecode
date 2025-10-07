@@ -52,7 +52,15 @@ function App() {
   }
 
   const handleDeleteTodo = (id: number) => {
-    setTodos(todos.filter(todo => todo.id !== id))
+    const todoElement = document.querySelector(`[data-todo-id="${id}"]`)
+    if (todoElement) {
+      todoElement.classList.add('deleting')
+      setTimeout(() => {
+        setTodos(todos.filter(todo => todo.id !== id))
+      }, 300)
+    } else {
+      setTodos(todos.filter(todo => todo.id !== id))
+    }
   }
 
   const groupedTodos = todos.reduce((groups, todo) => {
@@ -201,7 +209,11 @@ function App() {
               <h3 className="date-header">{formatDate(date)}</h3>
               <div className="todos-wrapper">
                 {groupedTodos[date].map((todo) => (
-                  <div key={todo.id} className={`todo-item ${todo.completed ? 'completed' : ''}`}>
+                  <div
+                    key={todo.id}
+                    className={`todo-item ${todo.completed ? 'completed' : ''}`}
+                    data-todo-id={todo.id}
+                  >
                     <label className="checkbox-container">
                       <input
                         type="checkbox"
